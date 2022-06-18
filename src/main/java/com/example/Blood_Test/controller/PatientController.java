@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Blood_Test.model.Pathologist;
 import com.example.Blood_Test.model.Patient;
+import com.example.Blood_Test.service.PathologistService;
 import com.example.Blood_Test.service.PatientService;
 
 @RestController
@@ -21,7 +23,7 @@ public class PatientController {
 
 	@Autowired
 	private PatientService patientService;
-
+	
 	@GetMapping("/allPatient")
 	public List<Patient> getAllPatient() {
 		return patientService.getAllPatient();
@@ -43,15 +45,16 @@ public class PatientController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/loginValid")
-	public String login(@RequestBody Patient patient) {
-		System.out.println("value of Patient in controller : " + patient);
-		Patient oauthPatient = patientService.login(patient.getEmail(), patient.getPassword());
-
+	public String login(@RequestBody Patient user) {
+		System.out.println("value of Patient in controller : " + user);
+		Patient oauthPatient = patientService.login(user.getEmail(), user.getPassword());
+		
 		if (Objects.nonNull(oauthPatient)) {
 			String userName = oauthPatient.getFirstName() + " " + oauthPatient.getLastName();
 			System.out.println("Inside if condition");
 			return "DashboardPatient " + userName;
-		} else {
+		}
+		else {
 			System.out.println("Inside else condition");
 			return "Login";
 		}

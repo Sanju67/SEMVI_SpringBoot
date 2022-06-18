@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Blood_Test.model.Pathologist;
+import com.example.Blood_Test.model.Patient;
 import com.example.Blood_Test.repository.PathologistRepository;
 
 @Service
@@ -32,5 +33,9 @@ public class PathologistService {
 	public void deletePathologist(int id) {
 		pathologistRepo.deleteById(id);
 	}
-
+	
+	public Pathologist loginPath(String email, String password) {
+		Pathologist pathologist = pathologistRepo.findByEmailAndPassword(email, password);
+		return pathologist;
+	}
 }

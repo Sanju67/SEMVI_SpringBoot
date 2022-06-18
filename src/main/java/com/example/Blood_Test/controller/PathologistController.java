@@ -1,6 +1,7 @@
 package com.example.Blood_Test.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Blood_Test.model.Pathologist;
+import com.example.Blood_Test.model.Patient;
 import com.example.Blood_Test.service.PathologistService;
 
 @RestController
@@ -39,6 +41,23 @@ public class PathologistController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/deletePathologist/{id}")
 	public void deletePathologist(@PathVariable int id) {
 		pathologistService.deletePathologist(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/loginPatho")
+	public String login(@RequestBody Pathologist user) {
+		System.out.println("value of Pathologist in controller : " + user);
+		Pathologist oauthPathologist = pathologistService.loginPath(user.getEmail(), user.getPassword());
+		
+		if (Objects.nonNull(oauthPathologist)) {
+			String userName = oauthPathologist.getOwner_name();
+			System.out.println("Inside if condition");
+			return "DashboardPathologist " + userName;
+		}
+		else {
+			System.out.println("Inside else condition");
+			return "Login";
+		}
+
 	}
 
 }
