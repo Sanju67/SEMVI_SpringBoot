@@ -23,85 +23,68 @@ public class Test {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int test_id;
-	private String patient_name;
-	private String doctor_name;
-	private File Prescription_file;
-	private String contact_no;
-	private String test_location;
+	private String patientName;
+	private String doctorName;
+	private File prescriptionFile;
+	private String contactno;
+	private String testType;
+	private String testDate;
+	private String testLocation;
 	private String address;
-	private String test_type;
-	private Date test_date;
-
 	public int getTest_id() {
 		return test_id;
 	}
-
 	public void setTest_id(int test_id) {
 		this.test_id = test_id;
 	}
-
-	public String getPatient_name() {
-		return patient_name;
+	public String getPatientName() {
+		return patientName;
 	}
-
-	public void setPatient_name(String patient_name) {
-		this.patient_name = patient_name;
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
 	}
-
-	public String getDoctor_name() {
-		return doctor_name;
+	public String getDoctorName() {
+		return doctorName;
 	}
-
-	public void setDoctor_name(String doctor_name) {
-		this.doctor_name = doctor_name;
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
-
-	public File getPrescription_file() {
-		return Prescription_file;
+	public File getPrescriptionFile() {
+		return prescriptionFile;
 	}
-
-	public void setPrescription_file(File prescription_file) {
-		Prescription_file = prescription_file;
+	public void setPrescriptionFile(File prescriptionFile) {
+		this.prescriptionFile = prescriptionFile;
 	}
-
-	public String getContact_no() {
-		return contact_no;
+	public String getContactno() {
+		return contactno;
 	}
-
-	public void setContact_no(String contact_no) {
-		this.contact_no = contact_no;
+	public void setContactno(String contactno) {
+		this.contactno = contactno;
 	}
-
-	public String getTest_location() {
-		return test_location;
+	public String getTestType() {
+		return testType;
 	}
-
-	public void setTest_location(String test_location) {
-		this.test_location = test_location;
+	public void setTestType(String testType) {
+		this.testType = testType;
 	}
-
+	public String getTestDate() {
+		return testDate;
+	}
+	public void setTestDate(String testDate) {
+		this.testDate = testDate;
+	}
+	public String getTestLocation() {
+		return testLocation;
+	}
+	public void setTestLocation(String testLocation) {
+		this.testLocation = testLocation;
+	}
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	public String getTest_type() {
-		return test_type;
-	}
-
-	public void setTest_type(String test_type) {
-		this.test_type = test_type;
-	}
-
-	public Date getTest_date() {
-		return test_date;
-	}
-
-	public void setTest_date(Date test_date) {
-		this.test_date = test_date;
-	}
 
 }
