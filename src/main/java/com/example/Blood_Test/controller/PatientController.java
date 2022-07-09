@@ -4,21 +4,16 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.Blood_Test.model.Pathologist;
 import com.example.Blood_Test.model.Patient;
-import com.example.Blood_Test.service.PathologistService;
 import com.example.Blood_Test.service.PatientService;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
 public class PatientController {
 
 	@Autowired
