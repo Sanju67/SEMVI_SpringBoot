@@ -31,6 +31,14 @@ public class Test {
 	private String testDate;
 	private String testLocation;
 	private String address;
+	private String testStatus;
+	
+	public String getTestStatus() {
+		return testStatus;
+	}
+	public void setTestStatus(String testStatus) {
+		this.testStatus = testStatus;
+	}
 	public int getTest_id() {
 		return test_id;
 	}
