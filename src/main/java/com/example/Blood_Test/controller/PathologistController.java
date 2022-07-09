@@ -18,7 +18,7 @@ public class PathologistController {
 
 	@Autowired
 	private PathologistService pathologistService;
-
+	private Pathologist currentPatho; 
 	@GetMapping("/allPathologist")
 	public List<Pathologist> getAllPathologist() {
 		return pathologistService.getAllPathologist();
@@ -45,6 +45,7 @@ public class PathologistController {
 		Pathologist oauthPathologist = pathologistService.loginPath(user.getEmail(), user.getPassword());
 		
 		if (Objects.nonNull(oauthPathologist)) {
+			setCurrentPatho(oauthPathologist);
 			String userName = oauthPathologist.getOwner_name();
 			System.out.println("Inside if condition");
 			return "DashboardPathologist " + userName;
@@ -54,6 +55,14 @@ public class PathologistController {
 			return "Login";
 		}
 
+	}
+
+	public Pathologist getCurrentPatho() {
+		return currentPatho;
+	}
+
+	public void setCurrentPatho(Pathologist currentPatho) {
+		this.currentPatho = currentPatho;
 	}
 
 }

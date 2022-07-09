@@ -4,19 +4,22 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.Blood_Test.model.FileData;
+import com.example.Blood_Test.model.Pathologist;
 import com.example.Blood_Test.service.FileService;
 
 @RestController
@@ -24,6 +27,8 @@ public class FileController {
 
 	@Autowired
     private final FileService fileService;
+	private final Path root = Paths.get("files");
+	private Pathologist currentPatho ;
 
     public FileController(FileService fileService) {
         this.fileService = fileService;
@@ -33,6 +38,16 @@ public class FileController {
     public List<FileData> list() {
         return fileService.list();
     }
+    
+    @RequestMapping(method = RequestMethod.POST , value = "/upload")
+    public void upload(@PathVariable("file") MultipartFile file) {
+		try {
+			System.out.println("Inside upload service " + file);
+			 Files.copy(file.getInputStream(), this.root.resolve(currentPatho.getShop_name()+ " "+ (file).getOriginalFilename()));
+		} catch (Exception e) {
+		  throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+		}
+	  }
 
     @RequestMapping(method = RequestMethod.GET, value = "/downloadfile/{filename}")
     @ResponseBody

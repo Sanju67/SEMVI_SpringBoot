@@ -16,9 +16,18 @@ import com.example.Blood_Test.service.PatientService;
 @RestController
 public class PatientController {
 
+	private Patient currentPatient ;
+	
+	public Patient getCurrentPatient() {
+		return currentPatient;
+	}
+
+	public void setCurrentPatient(Patient currentPatient) {
+		this.currentPatient = currentPatient;
+	}
+	
 	@Autowired
 	private PatientService patientService;
-	
 	@GetMapping("/allPatient")
 	public List<Patient> getAllPatient() {
 		return patientService.getAllPatient();
@@ -45,6 +54,7 @@ public class PatientController {
 		Patient oauthPatient = patientService.login(user.getEmail(), user.getPassword());
 		
 		if (Objects.nonNull(oauthPatient)) {
+			setCurrentPatient(oauthPatient);
 			String userName = oauthPatient.getFirstName() + " " + oauthPatient.getLastName();
 			System.out.println("Inside if condition");
 			return "DashboardPatient " + userName;
@@ -55,5 +65,7 @@ public class PatientController {
 		}
 
 	}
+
+	
 
 }
