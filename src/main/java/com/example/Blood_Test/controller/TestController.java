@@ -36,7 +36,12 @@ public class TestController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/updateStatus")
 	public void updateStatus(@RequestBody Test test) {
-		test.setTestStatus("Accepted");
+		if (test.getTestStatus()== "Pending") {
+			test.setTestStatus("Accepted");
+		} else if(test.getTestStatus()== "Accepted") {
+			test.setTestStatus("Completed");
+		}
+		
 		testService.updateTest(test);
 	}
 }

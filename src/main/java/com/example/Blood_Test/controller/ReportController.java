@@ -18,14 +18,17 @@ public class ReportController {
 	private ReportService reportService ;
 
 	@GetMapping("/allReports")
-	public List<Report> getAllTest() {
+	public List<Report> getAllReports() {
 		return reportService.getAllReports();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addNewReport")
 	public Map addNewReport(@RequestBody Report report) {
+		System.out.println("report file received" + report.getReportFile());
 		Report savedReport = reportService.addReport(report);
 		String filename = savedReport.getreport_id()+"-Report.pdf";
+		savedReport.setReportFile(report.getReportFile()+filename);
+		reportService.updateReport(savedReport);
 		return Map.of("filename",filename);
 	}
 }

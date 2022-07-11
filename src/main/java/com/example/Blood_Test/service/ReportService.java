@@ -22,8 +22,11 @@ public class ReportService {
 	}
 
 	public Report addReport(Report report) {
-		return reportRepo.save(report); // adding comment
-		
+		return reportRepo.save(report); 
+	}
+	
+	public Report updateReport(Report report) {
+		return reportRepo.save(report);
 	}
 
 }
