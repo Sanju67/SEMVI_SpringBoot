@@ -10,36 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.Blood_Test.model.Patient;
+import com.example.Blood_Test.model.User;
 import com.example.Blood_Test.service.PatientService;
 
 @RestController
 public class PatientController {
-
-	private Patient currentPatient ;
-	
-	public Patient getCurrentPatient() {
-		return currentPatient;
-	}
-
-	public void setCurrentPatient(Patient currentPatient) {
-		this.currentPatient = currentPatient;
-	}
 	
 	@Autowired
 	private PatientService patientService;
 	@GetMapping("/allPatient")
-	public List<Patient> getAllPatient() {
+	public List<User> getAllPatient() {
 		return patientService.getAllPatient();
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addPatient")
-	public void addPatient(@RequestBody Patient patient) {
+	public void addPatient(@RequestBody User patient) {
 		patientService.addPatient(patient);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/updatePatient/{id}")
-	public void updatePatient(@PathVariable int id, @RequestBody Patient patient) {
+	public void updatePatient(@PathVariable int id, @RequestBody User patient) {
 		patientService.updatePatient(id, patient);
 	}
 
@@ -49,19 +39,16 @@ public class PatientController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/loginValid")
-	public String login(@RequestBody Patient user) {
-		System.out.println("value of Patient in controller : " + user);
-		Patient oauthPatient = patientService.login(user.getEmail(), user.getPassword());
+	public User login(@RequestBody User user) {
+		
+		User oauthPatient = patientService.login(user.getEmail(), user.getPassword());
 		
 		if (Objects.nonNull(oauthPatient)) {
-			setCurrentPatient(oauthPatient);
-			String userName = oauthPatient.getFirstName() + " " + oauthPatient.getLastName();
-			System.out.println("Inside if condition");
-			return "DashboardPatient " + userName;
+			return oauthPatient;
 		}
 		else {
 			System.out.println("Inside else condition");
-			return "Login";
+			return null;
 		}
 
 	}

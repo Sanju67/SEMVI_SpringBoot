@@ -17,7 +17,7 @@ import com.example.Blood_Test.RazorPay.OrderResponse;
 import com.example.Blood_Test.RazorPay.PaymentResponse;
 import com.example.Blood_Test.RazorPay.RazorPayClientConfig;
 import com.example.Blood_Test.model.CurrentUser;
-import com.example.Blood_Test.model.Patient;
+import com.example.Blood_Test.model.User;
 import com.example.Blood_Test.service.OrderService;
 import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
@@ -42,7 +42,7 @@ public class OrderController {
     }
  
     @RequestMapping(method = RequestMethod.POST, value = "/createOrder")
-    public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest,@CurrentUser Patient user) {
+    public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest,@CurrentUser User user) {
     	System.out.println("request system...+ user detail" + user.getFirstName());
     	
         OrderResponse razorPay = null;

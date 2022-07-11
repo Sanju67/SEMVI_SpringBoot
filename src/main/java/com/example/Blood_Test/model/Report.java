@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -24,10 +26,11 @@ public class Report {
 	private String patientName;
 	private String testType;
 	private String reportDate ;
-	private File reportFile ;
+	private String reportFile ;
+	private String user_id;
 	
 	
-	public Report(int test_id, String patientName, String testType, String reportDate, File reportFile) {
+	public Report(int test_id, String patientName, String testType, String reportDate, String reportFile) {
 		super();
 		this.report_id = test_id;
 		this.patientName = patientName;
@@ -35,10 +38,11 @@ public class Report {
 		this.reportDate = reportDate;
 		this.reportFile = reportFile;
 	}
-	public int getTest_id() {
+	
+	public int getreport_id() {
 		return report_id;
 	}
-	public void setTest_id(int test_id) {
+	public void setreport_id(int test_id) {
 		this.report_id = test_id;
 	}
 	public String getPatientName() {
@@ -59,11 +63,19 @@ public class Report {
 	public void setReportDate(String reportDate) {
 		this.reportDate = reportDate;
 	}
-	public File getReportFile() {
+	public String getReportFile() {
 		return reportFile;
 	}
-	public void setReportFile(File reportFile) {
+	public void setReportFile(String reportFile) {
 		this.reportFile = reportFile;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 }

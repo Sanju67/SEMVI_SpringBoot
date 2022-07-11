@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Patient")
+@Table(name = "User")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Patient {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

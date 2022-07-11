@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Blood_Test.model.Patient;
+import com.example.Blood_Test.model.User;
 import com.example.Blood_Test.repository.PatientRepository;
 
 @Service
@@ -15,17 +15,17 @@ public class PatientService {
 	@Autowired
 	public PatientRepository patientRepo;
 
-	public List<Patient> getAllPatient() {
-		List<Patient> patients = new ArrayList<>();
+	public List<User> getAllPatient() {
+		List<User> patients = new ArrayList<>();
 		patientRepo.findAll().forEach(patients::add);
 		return patients;
 	}
 
-	public void addPatient(Patient patient) {
+	public void addPatient(User patient) {
 		patientRepo.save(patient);
 	}
 
-	public void updatePatient(int id, Patient patient) {
+	public void updatePatient(int id, User patient) {
 		patientRepo.save(patient);
 	}
 
@@ -33,8 +33,8 @@ public class PatientService {
 		patientRepo.deleteById(id);
 	}
 
-	public Patient login(String email, String password) {
-		Patient patient = patientRepo.findByEmailAndPassword(email, password);
+	public User login(String email, String password) {
+		User patient = patientRepo.findByEmailAndPassword(email, password);
 		return patient;
 	}
 }

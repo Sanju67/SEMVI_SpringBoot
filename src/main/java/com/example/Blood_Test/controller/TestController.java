@@ -1,6 +1,8 @@
 package com.example.Blood_Test.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,17 @@ public class TestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addNewTest")
-	public void addNewtest(@RequestBody Test test) {
-		testService.addTest(test);
+	public Map addNewtest(@RequestBody Test test) {
+	 Test savedTest = testService.addTest(test);
+	 String filename = savedTest.getTest_id() +"-" +savedTest.getPatientName() +  "-PrescriptionFile.pdf";
+	 savedTest.setPrescriptionFile(filename);
+	 testService.updateTest(savedTest) ;
+	 return Map.of("filename",savedTest.getTest_id() + "-test.pdf");
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/updateStatus")
+	public void updateStatus(@RequestBody Test test) {
+		test.setTestStatus("Accepted");
+		testService.updateTest(test);
 	}
 }

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Blood_Test.model.FileData;
-import com.example.Blood_Test.model.Pathologist;
 import com.example.Blood_Test.service.FileService;
 
 @RestController
@@ -28,8 +27,7 @@ public class FileController {
 	@Autowired
     private final FileService fileService;
 	private final Path root = Paths.get("files");
-	private Pathologist currentPatho ;
-
+	
     public FileController(FileService fileService) {
         this.fileService = fileService;
     }
@@ -39,16 +37,18 @@ public class FileController {
         return fileService.list();
     }
     
-    @RequestMapping(method = RequestMethod.POST , value = "/upload")
-    public void upload(@PathVariable("file") MultipartFile file) {
+    @RequestMapping(method = RequestMethod.POST , value = "/upload/{filename}")
+    public void upload(@PathVariable("file") MultipartFile file,@PathVariable("filename") String filename) {
 		try {
 			System.out.println("Inside upload service " + file);
-			 Files.copy(file.getInputStream(), this.root.resolve(currentPatho.getShop_name()+ " "+ (file).getOriginalFilename()));
+			System.out.println("file name " + filename);
+//			 Files.copy(file.getInputStream(), this.root.resolve((file).getOriginalFilename()));
+			Files.copy(file.getInputStream(),this.root.resolve(filename)) ;
 		} catch (Exception e) {
 		  throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
 	  }
-
+    
     @RequestMapping(method = RequestMethod.GET, value = "/downloadfile/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename) throws IOException {
@@ -64,4 +64,15 @@ public class FileController {
                              .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                              .body(file);
     }
+    
+    
+//    public String getFileName() {
+//    	System.out.println("Inside get file Name ");
+////    	if (Objects.nonNull(currentPatho)) {
+////    		return currentPatho.getShop_name() ;
+////    	}else if(Objects.nonNull(currentPatient)) {
+////    		return currentPatient.getFirstName() + " " + currentPatient.getLastName();
+////    	}
+//    	return "";
+//    }
 }

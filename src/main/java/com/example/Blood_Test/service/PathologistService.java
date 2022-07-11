@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Blood_Test.model.Pathologist;
-import com.example.Blood_Test.model.Patient;
+import com.example.Blood_Test.model.User;
 import com.example.Blood_Test.repository.PathologistRepository;
 
 @Service

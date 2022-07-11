@@ -1,6 +1,7 @@
 package com.example.Blood_Test.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,9 @@ public class ReportController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addNewReport")
-	public void addNewtest(@RequestBody Report report) {
-		reportService.addReport(report);
+	public Map addNewReport(@RequestBody Report report) {
+		Report savedReport = reportService.addReport(report);
+		String filename = savedReport.getreport_id()+"-Report.pdf";
+		return Map.of("filename",filename);
 	}
 }

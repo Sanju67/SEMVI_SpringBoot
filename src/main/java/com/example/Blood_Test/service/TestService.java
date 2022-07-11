@@ -21,7 +21,11 @@ public class TestService {
 		return tests;
 	}
 
-	public void addTest(Test test) {
-		testRepo.save(test); // adding comment
+	public Test addTest(Test test) {
+		return testRepo.save(test); // adding comment
+	}
+
+	public void updateTest(Test savedTest) {
+		testRepo.save(savedTest);
 	}
 }

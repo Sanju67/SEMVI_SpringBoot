@@ -1,8 +1,5 @@
 package com.example.Blood_Test.model;
 
-import java.io.File;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,13 +22,14 @@ public class Test {
 	private int test_id;
 	private String patientName;
 	private String doctorName;
-	private File prescriptionFile;
+	private String prescriptionFile;
 	private String contactno;
 	private String testType;
 	private String testDate;
 	private String testLocation;
 	private String address;
 	private String testStatus;
+	private int user_id;
 	
 	public String getTestStatus() {
 		return testStatus;
@@ -57,10 +55,10 @@ public class Test {
 	public void setDoctorName(String doctorName) {
 		this.doctorName = doctorName;
 	}
-	public File getPrescriptionFile() {
+	public String getPrescriptionFile() {
 		return prescriptionFile;
 	}
-	public void setPrescriptionFile(File prescriptionFile) {
+	public void setPrescriptionFile(String prescriptionFile) {
 		this.prescriptionFile = prescriptionFile;
 	}
 	public String getContactno() {
@@ -92,6 +90,12 @@ public class Test {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 

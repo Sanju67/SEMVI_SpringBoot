@@ -21,8 +21,9 @@ public class ReportService {
 		return tests;
 	}
 
-	public void addReport(Report report) {
-		reportRepo.save(report); // adding comment
+	public Report addReport(Report report) {
+		return reportRepo.save(report); // adding comment
+		
 	}
 
 }
