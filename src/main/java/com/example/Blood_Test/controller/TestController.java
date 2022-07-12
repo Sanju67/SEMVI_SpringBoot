@@ -1,6 +1,5 @@
 package com.example.Blood_Test.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,10 +35,14 @@ public class TestController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/updateStatus")
 	public void updateStatus(@RequestBody Test test) {
-		if (test.getTestStatus()== "Pending") {
+		System.out.println(" Test status is : "+test.getTestStatus());
+		if (test.getTestStatus().equals("Pending")) {
 			test.setTestStatus("Accepted");
-		} else if(test.getTestStatus()== "Accepted") {
+			System.out.println(" Test status After setting is : "+test.getTestStatus());
+			
+		} else if(test.getTestStatus().equals("Accepted")) {
 			test.setTestStatus("Completed");
+			System.out.println(" Test status After setting is : "+test.getTestStatus());
 		}
 		
 		testService.updateTest(test);

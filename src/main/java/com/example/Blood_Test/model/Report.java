@@ -23,7 +23,8 @@ public class Report {
 	private String testType;
 	private String reportDate ;
 	private String reportFile ;
-	private String user_id;
+	private int user_id;
+	private int test_id;
 	
 	Report(){
 		
@@ -69,12 +70,20 @@ public class Report {
 		this.reportFile = reportFile;
 	}
 
-	public String getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(String user_id) {
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	public int getTest_id() {
+		return test_id;
+	}
+
+	public void setTest_id(int test_id) {
+		this.test_id = test_id;
 	}
 
 }
