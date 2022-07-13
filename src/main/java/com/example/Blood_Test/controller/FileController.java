@@ -64,15 +64,4 @@ public class FileController {
                              .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                              .body(file);
     }
-    
-    
-//    public String getFileName() {
-//    	System.out.println("Inside get file Name ");
-////    	if (Objects.nonNull(currentPatho)) {
-////    		return currentPatho.getShop_name() ;
-////    	}else if(Objects.nonNull(currentPatient)) {
-////    		return currentPatient.getFirstName() + " " + currentPatient.getLastName();
-////    	}
-//    	return "";
-//    }
 }
