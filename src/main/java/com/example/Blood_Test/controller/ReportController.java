@@ -24,7 +24,6 @@ public class ReportController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/addNewReport")
 	public Map addNewReport(@RequestBody Report report) {
-		System.out.println("report file received" + report.getReportFile());
 		Report savedReport = reportService.addReport(report);
 		String filename = savedReport.getreport_id()+"-Report.pdf";
 		savedReport.setReportFile(report.getReportFile()+filename);
