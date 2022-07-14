@@ -28,9 +28,10 @@ public class PatientController {
 		patientService.addPatient(patient);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/updatePatient/{id}")
-	public void updatePatient(@PathVariable int id, @RequestBody User patient) {
-		patientService.updatePatient(id, patient);
+	@RequestMapping(method = RequestMethod.PUT, value = "/updatePatient")
+	public void updatePatient(@RequestBody User patient) {
+		System.out.println("inside controller for update patient " + patient.getEmail());
+		patientService.updatePatient(patient);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/deletePatient/{id}")

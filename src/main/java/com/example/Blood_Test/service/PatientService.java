@@ -25,8 +25,11 @@ public class PatientService {
 		patientRepo.save(patient);
 	}
 
-	public void updatePatient(int id, User patient) {
-		patientRepo.save(patient);
+	public void updatePatient(User patient) {
+		User patientToUpdate = patientRepo.findByEmail(patient.getEmail());
+		System.out.println("User got by mail id : " + patientToUpdate.getFirstName());
+		patientToUpdate.setPassword(patient.getPassword());
+		patientRepo.save(patientToUpdate);
 	}
 
 	public void deletePatient(int id) {
