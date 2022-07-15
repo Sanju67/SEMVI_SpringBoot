@@ -30,7 +30,7 @@ public class TestController {
 	 String filename = savedTest.getTest_id() +"-" +savedTest.getPatientName() +  "-PrescriptionFile.pdf";
 	 savedTest.setPrescriptionFile(filename);
 	 testService.updateTest(savedTest) ;
-	 return Map.of("filename",savedTest.getTest_id() + "-test.pdf");
+	 return Map.of("filename",filename);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/updateStatus")
