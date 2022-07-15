@@ -36,6 +36,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
  
+    @Autowired
     public OrderController(RazorPayClientConfig razorpayClientConfig) throws RazorpayException {
         this.razorPayClientConfig = razorpayClientConfig;
         this.client = new RazorpayClient(razorpayClientConfig.getKey(), razorpayClientConfig.getSecret());
@@ -44,6 +45,7 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST, value = "/createOrder")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest,@CurrentUser User user) {
     	System.out.println("request system...+ user detail" + user.getFirstName());
+    	System.out.println("User id under order request : " + orderRequest.getUser_id());
     	
         OrderResponse razorPay = null;
         try {
@@ -54,7 +56,7 @@ public class OrderController {
             Order order = createRazorPayOrder(amountInPaise);
             razorPay = getOrderResponse((String) order.get("id"), amountInPaise);
             // Save order in the database
-            orderService.saveOrder(razorPay.getRazorpayOrderId(),(long) user.getId());
+            orderService.saveOrder(razorPay.getRazorpayOrderId(),(long) orderRequest.getUser_id());
         } catch (RazorpayException e) {
            // log.error("Exception while create payment order", e);
             return new ResponseEntity<>(new ApiResponse(false, "Error while create payment order: " + e.getMessage()), HttpStatus.EXPECTATION_FAILED);

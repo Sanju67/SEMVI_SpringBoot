@@ -8,6 +8,7 @@ public class OrderRequest {
     private String email;
     private String phoneNumber;
     private String amount;
+    private int user_id;
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -32,6 +33,13 @@ public class OrderRequest {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
+	public int getUser_id() {
+		return user_id ;
+	}
+	public void setUser_id(int id) {
+		this.user_id = id;
+	}
+	
     
     
 }
