@@ -44,8 +44,6 @@ public class OrderController {
  
     @RequestMapping(method = RequestMethod.POST, value = "/createOrder")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest,@CurrentUser User user) {
-    	System.out.println("request system...+ user detail" + user.getFirstName());
-    	System.out.println("User id under order request : " + orderRequest.getUser_id());
     	
         OrderResponse razorPay = null;
         try {
